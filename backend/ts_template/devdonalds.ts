@@ -45,7 +45,8 @@ app.post("/parse", (req: Request, res: Response) => {
 // [TASK 1] ====================================================================
 // Takes in a recipeName and returns it in a form that
 const parse_handwriting = (recipeName: string): string | null => {
-  recipeName = recipeName.split("").map(c => (c === "-" || c === "-") ? " " : c)
+  recipeName = recipeName.replace(/[-_]/g, ' ')
+  recipeName = recipeName.split("")
     .filter(c => /[a-zA-Z\s]/.test(c)).join("");
   recipeName = recipeName.replace(/\s+/g, ' ').trim();
 
@@ -166,5 +167,5 @@ function add_ingredients(quantities: Map<string, number>, name: string, quantity
 // =============================================================================
 const port = 8080;
 app.listen(port, () => {
-  console.log(`a`);
+  console.log(`Running on: http://127.0.0.1:8080`);
 });
