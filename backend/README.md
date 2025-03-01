@@ -1,4 +1,4 @@
-> This question is relevant for **any project with a backend (minus chaos)**
+    > This question is relevant for **any project with a backend (minus chaos)**
 > (Bridges, Circles, Clusters, Freerooms, Notangles, Structs, Unielectives).
 
 # DevSoc Subcommittee Recruitment: Backend
@@ -22,7 +22,7 @@ For this task you should complete the `parse_handwriting()` function, that takes
 - All hyphens (`-`) and underscores (`_`) should be replaced with a whitespace. If there are multiple occurrences all instances should be replaced.
 
 - Food names can only contain letters and whitespaces. Any other characters should be removed (or otherwise changed as above).
-
+        
   ```
   Riz@z RISO00tto! -> Rizz Risotto
   ```
@@ -48,7 +48,7 @@ For this task you should complete the `parse_handwriting()` function, that takes
 - The resulting string should have a length of `> 0` characters. If it doesn't satisfy this case, return `null` (or `None` in python).
 
 If the input already satisfies all the conditions, simply return the input string.
-
+  
 ## 🍳 Task 2: Cook or be cooked
 
 You want to create and add more `entries` to the cookbook, but find out that it only accepts new items via an exposed **HTTP POST endpoint**. The endpoint takes a JSON request body containing a single `entry`.
