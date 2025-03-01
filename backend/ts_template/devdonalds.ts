@@ -112,27 +112,26 @@ app.get("/summary", (req: Request, res: Request) => {
   try {
     quantities = getQuantities(req.query.name);
   }
-  catch (e){
-   res.status(400).send(e.message);
+  catch (e) {
+    res.status(400).send(e.message);
     return;
   }
-  quantities.forEach((quantity, name) =>
-  {
-    if (!cookbook.has(name)){
+  quantities.forEach((quantity, name) => {
+    if (!cookbook.has(name)) {
       res.status(400).send("No ingredient found with name");
       return;
     }
     const ingredient = cookbook.get(name);
     // @ts-ignore: Property 'cookTime' does not exist on type 'recipe | ingredient'
     sum += ingredient.cookTime * quantity;
-    ingredients.push({name, quantity});
+    ingredients.push({ name, quantity });
   });
 
-  res.status(200).json({name: req.body.name, cookTime: sum, ingredients});
+  res.status(200).json({ name: req.body.name, cookTime: sum, ingredients });
 });
 
-function getQuantities(name: string ) {
-  if (!cookbook.has(name)){
+function getQuantities(name: string) {
+  if (!cookbook.has(name)) {
     throw new Error('No entry with given name: ' + name);
   }
   const quantities = new Map<string, number>;
@@ -142,7 +141,7 @@ function getQuantities(name: string ) {
     entry.requiredItems.forEach((item: requiredItem) => {
       if (cookbook.get(item.name).type === "recipe") {
         const subQuantities = getQuantities(item.name);
-        subQuantities.forEach((quantity,name) => add_ingredients(quantities, name, quantity * item.quantity));
+        subQuantities.forEach((quantity, name) => add_ingredients(quantities, name, quantity * item.quantity));
         return;
       }
       add_ingredients(quantities, item.name, item.quantity);
